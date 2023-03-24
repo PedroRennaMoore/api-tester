@@ -7,9 +7,9 @@
 }
 
 .errors {
-    padding: 0 20px;
     margin-top: 20px;
     font-weight: 300;
+    padding: 0 20px;
     font-size: 13px;
 }
 
@@ -21,8 +21,8 @@
 }
 
 .note {
-    margin-top: 20px;
     padding: 0 20px;
+    margin-top: 20px;
     font-weight: 300;
     font-size: 13px;
 }

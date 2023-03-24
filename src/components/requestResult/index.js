@@ -10,10 +10,11 @@ const RequestResult = ({response, responseTime, responseError, loading}) => {
     }
     
     if(responseError){
+        console.log(responseError)
         return(
             <>
             <div className="errors"><p><b>ERROR:</b> {responseError?.message} <spam>( {responseError?.response?.statusText})</spam></p></div>
-            {responseError?.request?.response &&
+            {responseError?.request?.responseText && responseError.request.status !== 404 &&
             <div className="error_name"><p><b>RESPONSE MESSAGE:</b> {responseError?.request?.response}</p></div>
             }
             
@@ -47,6 +48,7 @@ const RequestResult = ({response, responseTime, responseError, loading}) => {
                             <xmp>{JSON.stringify(responseError?.request?.response, undefined,4)}</xmp>
                         </div>
                     </div>
+                    <div className="note"><p><b>NOTE</b>: You can see the entire REQUEST RESPONSE in CONSOLE.</p></div>
                 </div>
             </div>
         )
