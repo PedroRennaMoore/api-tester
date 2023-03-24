@@ -1,0 +1,22 @@
+.url_input {
+    max-width: 500px;
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.url_input input {
+    max-width: 440px;
+    width: 100%;
+    margin: 0 20px 0 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px rgb(154, 154, 154);
+}
+
+.url_input input:focus {
+    outline: none;
+}
