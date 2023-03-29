@@ -5,6 +5,7 @@ import RequestUrl from "../../components/requestURL";
 import DataSend from "../../components/dataSend";
 import RequestExecuteButton from "../../components/requestExecuteButton";
 import RequestResult from "../../components/requestResult";
+import CustomHeaders from "../../components/customHeaders";
 
 import { updateRequest } from "../../services/API";
 
@@ -16,6 +17,14 @@ const UpdatePage = () => {
     const [loading, setLoading] = useState(false)
     const [updateError, setUpdateError] = useState(null)
     const [axiosTimer, setAxiosTimer] = useState(null)
+    const [header, setHeader] = useState(null)
+    
+    const attHeaderValues = (headerName, headerValue) => {
+        setHeader({
+            name: headerName,
+            value: headerValue
+        })
+    }
 
     const executeUpdate = async() => {
         try {
@@ -24,7 +33,7 @@ const UpdatePage = () => {
                 throw new Error("Invalid URL")
             }
             let startTime = Date.now()
-            let response = await updateRequest(url, JSON.parse(sendData))
+            let response = await updateRequest(url, JSON.parse(sendData), header)
             setUpdateResponse(response)
             axiosTimerFunc(startTime)
             setUpdateError(null)
@@ -47,6 +56,7 @@ const UpdatePage = () => {
         <div className="update_page">
             <RequestUrl name="update_url_request" id="update_url_request" value={url} handleOnChange={(e) => setUrl(e.target.value)}/>
             <DataSend name="update_data" id="update_data" handleOnChange={(e) => setSendData(e.target.value)} value={sendData} />
+            <CustomHeaders headerValues={attHeaderValues}/>
             <RequestExecuteButton handleOnClick={executeUpdate}/>
             <RequestResult responseTime={axiosTimer? axiosTimer : null} loading={loading} response={updateResponse? updateResponse: null} responseError={updateError? updateError: null} />
         </div>

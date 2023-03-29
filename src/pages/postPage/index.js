@@ -3,6 +3,7 @@ import "./index.css"
 
 import RequestUrl from "../../components/requestURL";
 import RequestExecuteButton from "../../components/requestExecuteButton";
+import CustomHeaders from "../../components/customHeaders";
 import DataSend from "../../components/dataSend";
 import RequestResult from "../../components/requestResult";
 
@@ -18,6 +19,14 @@ const PostPage = () => {
     const [loading, setLoading] = useState(false)
     const [postError, setPostError] = useState(null)
     const [axiosTimer, setAxiosTimer] = useState(null)
+    const [header, setHeader] = useState(null)
+    
+    const attHeaderValues = (headerName, headerValue) => {
+        setHeader({
+            name: headerName,
+            value: headerValue
+        })
+    }
 
     const executePost = async() => {
         try {
@@ -26,7 +35,7 @@ const PostPage = () => {
                 throw new Error("Invalid URL")
             }
             let startTime = Date.now()
-            let response = await postRequest(url, JSON.parse(sendData))
+            let response = await postRequest(url, JSON.parse(sendData), header)
             setPostResponse(response)
             axiosTimerFunc(startTime)
             setPostError(null)
@@ -49,6 +58,7 @@ const PostPage = () => {
         <div className="post_page">
             <RequestUrl name="post_url_request" id="post_url_request" value={url} handleOnChange={(e) => setUrl(e.target.value)}/>
             <DataSend name="post_data" id="post_data" handleOnChange={(e) => setSendData(e.target.value)} value={sendData} />
+            <CustomHeaders headerValues={attHeaderValues}/>
             <RequestExecuteButton handleOnClick={executePost}/>
             <RequestResult responseTime={axiosTimer? axiosTimer : null} loading={loading} response={postResponse? postResponse: null} responseError={postError? postError: null} />
         </div>

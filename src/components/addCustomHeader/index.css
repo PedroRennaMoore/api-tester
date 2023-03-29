@@ -1,0 +1,44 @@
+.custom_header {
+    display: flex;
+    gap: 5px;
+}
+
+.header_input {
+    display: flex;
+    gap: 5px;
+    max-width: 500px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_input input {
+    max-width: 220px;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px rgb(154, 154, 154);
+}
+
+.header_button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+}
+
+.header_button button {
+    width: 30px;
+    height: 30px;
+    background-color: rgb(36, 109, 157);
+    border: none;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.495);
+    border-radius: 5px;
+}
+
+
+.header_input input:focus {
+    outline: none;
+}
